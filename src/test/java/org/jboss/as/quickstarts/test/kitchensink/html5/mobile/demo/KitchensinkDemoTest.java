@@ -34,26 +34,10 @@ public abstract class KitchensinkDemoTest {
 	private static final String OPENSHIFT_URL = "http://kitchensinkhtml5-aemmanou.rhcloud.com/";
 	
     /**
-     * The context root.
-     */
-//    @ArquillianResource
-//    protected URL contextRoot;
-
-    /**
      * The browser instance.
      */
     @Drone
     protected WebDriver driver;
-
-    /**
-     * Deploys the {@link Archive} on the AS.
-     * 
-     * @return An {@link Archive}.
-     */
-//    @Deployment(testable = false)
-//    public static Archive<?> createTestArchive() {
-//        return Deployments.createDeployment();
-//    }
 
     /**
      * Initializes the page url.
