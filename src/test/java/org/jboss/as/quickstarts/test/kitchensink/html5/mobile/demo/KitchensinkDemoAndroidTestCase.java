@@ -19,6 +19,7 @@ package org.jboss.as.quickstarts.test.kitchensink.html5.mobile.demo;
 
 import org.jboss.arquillian.graphene.spi.annotations.Page;
 import org.jboss.arquillian.junit.InSequence;
+import org.jboss.as.quickstarts.kitchensink.html5.mobile.demo.common.KitchensinkUtilities;
 import org.jboss.as.quickstarts.kitchensink.html5.mobile.demo.pages.AndroidPage;
 import org.jboss.as.quickstarts.kitchensink.html5.mobile.demo.pages.MembersPage;
 import org.jboss.as.quickstarts.kitchensink.html5.mobile.demo.pages.RegistrationPage;
@@ -79,10 +80,8 @@ public class KitchensinkDemoAndroidTestCase extends KitchensinkDemoTest {
         androidPage.navigateToListPage();
         // wait for the row list page to load
         membersPage.waitUntilPageIsLoaded();
-        // assert that one member exist
-        Assert.assertTrue (membersPage.getMembersCount() == 1);
         // assert that the default member exists in the list
-        Assert.assertTrue (membersPage.memberExists(defaultUserName, defaultUserEmail, defaultUserPhoneNumber));
+        Assert.assertTrue(membersPage.memberExists(defaultUserName, defaultUserEmail, defaultUserPhoneNumber));
     }
 
     /**
@@ -99,8 +98,10 @@ public class KitchensinkDemoAndroidTestCase extends KitchensinkDemoTest {
         androidPage.navigateToRegistrationPage();
         // wait for the registration page to load
         registrationPage.waitUntilPageIsLoaded();
+        // generate a random email (prevent case where the same email is already registered on the OpenShift app)
+        final String randomEmail = KitchensinkUtilities.generateRandomEmail(6, emailRegistrationSuffix);
         // register the new member
-        registrationPage.registerMember(memberRegistrationName, emailRegistrationName, phoneRegistrationName);
+        registrationPage.registerMember(memberRegistrationName, randomEmail, phoneRegistrationName);
         // wait until the success message is visible
         registrationPage.waitUntilSuccessMessageIsVisible();
         // initialize main page
@@ -111,10 +112,8 @@ public class KitchensinkDemoAndroidTestCase extends KitchensinkDemoTest {
         androidPage.navigateToListPage();
         // wait for the row list page to load
         membersPage.waitUntilPageIsLoaded();
-        // assert that two members exist
-        Assert.assertTrue (membersPage.getMembersCount() == 2);
         // assert that the previously registered member exists in the list
-        Assert.assertTrue (membersPage.memberExists(memberRegistrationName, emailRegistrationName, phoneRegistrationName));
+        Assert.assertTrue(membersPage.memberExists(memberRegistrationName, randomEmail, phoneRegistrationName));
     }
 
     /**
@@ -134,7 +133,7 @@ public class KitchensinkDemoAndroidTestCase extends KitchensinkDemoTest {
         // register the new member
         registrationPage.registerMember(memberRegistrationName, defaultUserEmail, phoneRegistrationName);
         // assert that a specific error message appears
-        Assert.assertTrue (registrationPage.getEmailTakenErrorMessage().equals(registrationPage.getEmailInvalidMessage()));
+        Assert.assertTrue(registrationPage.getEmailTakenErrorMessage().equals(registrationPage.getEmailInvalidMessage()));
     }
 
     /**
@@ -154,12 +153,12 @@ public class KitchensinkDemoAndroidTestCase extends KitchensinkDemoTest {
         // register the new member
         registrationPage.registerMember("", "", "");
         // assert that a specific error message appears
-        Assert.assertTrue (registrationPage.getEmptyEmailErrorMessage().equals(registrationPage.getEmailInvalidMessage()));
+        Assert.assertTrue(registrationPage.getEmptyEmailErrorMessage().equals(registrationPage.getEmailInvalidMessage()));
         // assert that a specific error message appears
-        Assert.assertTrue (registrationPage.getInvalidNameErrorMessage().equals(registrationPage.getNameInvalidMessage()));
+        Assert.assertTrue(registrationPage.getInvalidNameErrorMessage().equals(registrationPage.getNameInvalidMessage()));
         // assert that a specific error message appears
-        Assert.assertTrue (registrationPage.getEmptyPhoneErrorMessage().equals(registrationPage.getPhoneInvalidMessage()) || registrationPage
-                .getInvalidPhoneErrorMessage().equals(registrationPage.getPhoneInvalidMessage()));
+        Assert.assertTrue(registrationPage.getEmptyPhoneErrorMessage().equals(registrationPage.getPhoneInvalidMessage())
+                || registrationPage.getInvalidPhoneErrorMessage().equals(registrationPage.getPhoneInvalidMessage()));
     }
 
     /**
@@ -179,12 +178,12 @@ public class KitchensinkDemoAndroidTestCase extends KitchensinkDemoTest {
         // register the new member
         registrationPage.registerMember(userNameBadFormat, userEmailBadFormat, userPhoneNumberBadFormat);
         // assert that a specific error message appears
-        Assert.assertTrue (registrationPage.getInvalidEmailErrorMessage().equals(registrationPage.getEmailInvalidMessage()));
+        Assert.assertTrue(registrationPage.getInvalidEmailErrorMessage().equals(registrationPage.getEmailInvalidMessage()));
         // assert that a specific error message appears
-        Assert.assertTrue (registrationPage.getInvalidNameErrorMessage().equals(registrationPage.getNameInvalidMessage()));
+        Assert.assertTrue(registrationPage.getInvalidNameErrorMessage().equals(registrationPage.getNameInvalidMessage()));
         // assert that a specific error message appears
-        Assert.assertTrue (registrationPage.getEmptyPhoneErrorMessage().equals(registrationPage.getPhoneInvalidMessage()) || registrationPage
-                .getInvalidPhoneErrorMessage().equals(registrationPage.getPhoneInvalidMessage()));
+        Assert.assertTrue(registrationPage.getEmptyPhoneErrorMessage().equals(registrationPage.getPhoneInvalidMessage())
+                || registrationPage.getInvalidPhoneErrorMessage().equals(registrationPage.getPhoneInvalidMessage()));
     }
 
     /* -- Testing data begin -- */
@@ -197,7 +196,7 @@ public class KitchensinkDemoAndroidTestCase extends KitchensinkDemoTest {
     /**
      * Email to be used to test the registration functionality.
      */
-    private static final String emailRegistrationName = "chris@example.com";
+    private static final String emailRegistrationSuffix = "@example.com";
 
     /**
      * Phone to be used to test the registration functionality.
