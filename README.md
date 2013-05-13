@@ -75,7 +75,7 @@ Setup the Build Triggers, Build configuration. For convenience I have configured
 
 ![Jenkins setup build triggers and configuration](https://raw.github.com/tolis-e/jenkins-mobile-web-app-android-img/master/jenkins_17.png)
 
-Setup the emulator options. You can either select an existing emulator or configure a new one. In case you have build slaves which are headless (e.g. servers without a graphical user interface), you can still run an Android Emulator even although, by default, the emulator does require a graphical environment. You have to untick the "Show emulator window" configuration option in your job configuration. Obviously when executing the test on a headless build machine, it is executed much faster.
+Setup the emulator options. You can either select an existing emulator or configure a new one. In case you have build slaves which are headless (e.g. servers without a graphical user interface), you can still run an Android Emulator even although, by default, the emulator does require a graphical environment. You have to untick the "Show emulator window" configuration option in your job configuration. Obviously when executing the test on a headless build machine, it is executed much faster. Do not rely to the below configuration of the emulator since it was created just to verify that the whole procedure works. In order to configure your emulator check the [Jenkins Android Emulator](https://wiki.jenkins-ci.org/display/JENKINS/Android+Emulator+Plugin) plugin's page.
 
 ![Jenkins emulator options](https://raw.github.com/tolis-e/jenkins-mobile-web-app-android-img/master/jenkins_18.png)
 
