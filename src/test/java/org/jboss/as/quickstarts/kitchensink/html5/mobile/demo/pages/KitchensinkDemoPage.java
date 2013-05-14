@@ -43,6 +43,6 @@ public class KitchensinkDemoPage {
      * Waits until the page is loaded.
      */
     public void waitUntilPageIsLoaded() {
-        Graphene.waitModel().withTimeout(10, TimeUnit.SECONDS).until(element(content).isVisible());
+        Graphene.waitModel().withTimeout(40, TimeUnit.SECONDS).until(element(content).isVisible());
     }
 }

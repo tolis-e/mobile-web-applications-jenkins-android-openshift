@@ -128,7 +128,7 @@ public class MembersPage extends KitchensinkDemoPage {
     public void waitUntilPageIsLoaded() {
         super.waitUntilPageIsLoaded();
         // wait until the members sections is visible
-        Graphene.waitModel().withTimeout(10, TimeUnit.SECONDS).until(element(members).isVisible());
+        Graphene.waitModel().withTimeout(40, TimeUnit.SECONDS).until(element(members).isVisible());
     }
 
     /**

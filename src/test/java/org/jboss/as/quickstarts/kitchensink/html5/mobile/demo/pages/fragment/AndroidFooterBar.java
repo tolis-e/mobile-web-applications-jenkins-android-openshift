@@ -88,7 +88,7 @@ public class AndroidFooterBar {
      * Wait until the entire footer is visible.
      */
     public void waitUntilIsVisible() {
-        Graphene.waitModel().withTimeout(10, TimeUnit.SECONDS).until(element(footerRight).isVisible());
-        Graphene.waitModel().withTimeout(10, TimeUnit.SECONDS).until(element(footerLeft).isVisible());
+        Graphene.waitModel().withTimeout(40, TimeUnit.SECONDS).until(element(footerRight).isVisible());
+        Graphene.waitModel().withTimeout(40, TimeUnit.SECONDS).until(element(footerLeft).isVisible());
     }
 }

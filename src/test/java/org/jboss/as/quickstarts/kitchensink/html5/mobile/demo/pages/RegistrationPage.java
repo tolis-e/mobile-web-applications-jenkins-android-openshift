@@ -18,7 +18,6 @@
 package org.jboss.as.quickstarts.kitchensink.html5.mobile.demo.pages;
 
 import static org.jboss.arquillian.graphene.Graphene.element;
-import static org.jboss.arquillian.graphene.Graphene.waitModel;
 
 import java.text.MessageFormat;
 import java.util.concurrent.TimeUnit;
@@ -138,7 +137,7 @@ public class RegistrationPage extends KitchensinkDemoPage {
      * Waits until the form is visible.
      */
     public void waitUntilFormIsVisible() {
-        Graphene.waitModel().withTimeout(20, TimeUnit.SECONDS).until(element(form).isVisible());
+        Graphene.waitModel().withTimeout(40, TimeUnit.SECONDS).until(element(form).isVisible());
     }
 
     /**
@@ -165,7 +164,7 @@ public class RegistrationPage extends KitchensinkDemoPage {
      */
     public void submitFormByButton(String id) {
         final WebElement submitButton = form.findElement(By.id(id));
-        waitModel().withTimeout(10, TimeUnit.SECONDS).until(element(submitButton).isVisible());
+        Graphene.waitModel().withTimeout(40, TimeUnit.SECONDS).until(element(submitButton).isVisible());
         submitButton.click();
     }
 
@@ -176,7 +175,7 @@ public class RegistrationPage extends KitchensinkDemoPage {
      */
     public void cancel(String id) {
         final WebElement cancelButton = form.findElement(By.id(id));
-        waitModel().withTimeout(10, TimeUnit.SECONDS).until(element(cancelButton).isVisible());
+        Graphene.waitModel().withTimeout(40, TimeUnit.SECONDS).until(element(cancelButton).isVisible());
         cancelButton.click();
     }
 
@@ -226,9 +225,9 @@ public class RegistrationPage extends KitchensinkDemoPage {
      * @param className The success message span className.
      */
     public void waitUntilSuccessMessageIsVisible(String className) {
-        Graphene.waitModel().withTimeout(10, TimeUnit.SECONDS).until(element(formMsg).isVisible());
+        Graphene.waitModel().withTimeout(40, TimeUnit.SECONDS).until(element(formMsg).isVisible());
         final WebElement successMsg = formMsg.findElement(By.className(className));
-        Graphene.waitModel().withTimeout(10, TimeUnit.SECONDS).until(element(successMsg).isVisible());
+        Graphene.waitModel().withTimeout(40, TimeUnit.SECONDS).until(element(successMsg).isVisible());
     }
 
     /**
@@ -242,7 +241,7 @@ public class RegistrationPage extends KitchensinkDemoPage {
                 inputId)));
         final WebElement invalidMessage = divContainer.findElement(By.className(invalidMsgClassName));
 
-        Graphene.waitModel().withTimeout(10, TimeUnit.SECONDS).until(new ExpectedCondition<Boolean>() {
+        Graphene.waitModel().withTimeout(40, TimeUnit.SECONDS).until(new ExpectedCondition<Boolean>() {
             @Override
             public Boolean apply(WebDriver notUsed) {
                 return invalidMessage != null && !StringUtils.isEmpty(invalidMessage.getText());
