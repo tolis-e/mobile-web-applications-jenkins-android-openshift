@@ -121,7 +121,7 @@ public class RegistrationPage extends KitchensinkDemoPage {
     /**
      * Invalid message class name.
      */
-    private static final String invalidMsgClassName = "invalid";
+    private static final String invalidMsg = "span.invalid";
 
     /**
      * Waits until the car registration page is loaded. The AndroidWeb
@@ -239,7 +239,7 @@ public class RegistrationPage extends KitchensinkDemoPage {
     public String getInvalidMessage(String inputId) {
         final WebElement divContainer = form.findElement(ByJQuery.jquerySelector(MessageFormat.format(inputFieldParentPattern,
                 inputId)));
-        final WebElement invalidMessage = divContainer.findElement(By.className(invalidMsgClassName));
+        final WebElement invalidMessage = divContainer.findElement(ByJQuery.jquerySelector(invalidMsg));
 
         Graphene.waitModel().withTimeout(40, TimeUnit.SECONDS).until(new ExpectedCondition<Boolean>() {
             @Override
