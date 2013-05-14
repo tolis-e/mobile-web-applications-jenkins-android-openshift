@@ -36,6 +36,6 @@ public class KitchensinkUtilities {
      * @return Random email
      */
     public static final String generateRandomEmail(int length, String suffix) {
-        return (new StringBuffer()).append(RandomStringUtils.random(length, true, false)).append(suffix).toString();
+        return (new StringBuilder()).append(RandomStringUtils.random(length, true, false)).append(suffix).toString();
     }
 }
